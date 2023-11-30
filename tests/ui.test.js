@@ -55,3 +55,13 @@ test('Verify "User email" is visible after user login', async ({ page}) => {
     const isLinkVisible = await User_email.isVisible();
     expect(isLinkVisible).toBe(true);
 });
+
+
+test('Login with valid credentials', async ({ page}) => {
+    await page.goto('http://localhost:3000/login');
+    await page.fill('input[name="email"]', 'peter@abv.bg');
+    await page.fill('input[id="password"]', '123456');
+    await page.click('input[type="submit"]');
+    await page.$('a[href="/catalog"]');
+    expect(page.url()).toBe('http://localhost:3000/catalog');
+});
