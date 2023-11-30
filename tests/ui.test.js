@@ -7,3 +7,11 @@ test('Verify "All Books" link is visible', async ({ page}) => {
     const isLinkVisible = await allBooksLink.isVisible();
     expect(isLinkVisible).toBe(true);
 });
+
+test('Verify "Login Button" link is visible', async ({ page}) => {
+    await page.goto('http://localhost:3000');
+    await page.waitForSelector('nav.navbar');
+    const loginButton = await page.$('a[href="/login"]');
+    const isLoginButtonVisible = await loginButton.isVisible();
+    expect(isLoginButtonVisible).toBe(true);
+});
