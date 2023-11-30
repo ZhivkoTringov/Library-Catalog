@@ -35,3 +35,13 @@ test('Verify "My Books" link is visible after user login', async ({ page}) => {
     const isLinkVisible = await MyBooksLink.isVisible();
     expect(isLinkVisible).toBe(true);
 });
+
+test('Verify "Add Book" link is visible after user login', async ({ page}) => {
+    await page.goto('http://localhost:3000/login');
+    await page.fill('input[name="email"]', 'peter@abv.bg');
+    await page.fill('input[id="password"]', '123456');
+    await page.click('input[type="submit"]');
+    const AddBooksLink = await page.$('a[href="/create"]');
+    const isLinkVisible = await AddBooksLink.isVisible();
+    expect(isLinkVisible).toBe(true);
+});
